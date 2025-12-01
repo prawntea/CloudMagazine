@@ -1,6 +1,6 @@
-# GEO.SYNC - Weather App
+# CloudMagazine - Weather App
 
-A modern, futuristic weather application built with React, Vite, and Tailwind CSS. Features real-time weather data, temperature unit toggling, favorites management, and a sleek day/night theme.
+A modern, futuristic weather application built with React, Vite, and Tailwind CSS. Takes design elements from Megazone Cloud including the logo, title and day (Megazone AIR animation) and night (Cloud Native animation) backgrounds. Features real-time weather data, temperature unit toggling, favorites management, and a sleek day/night theme.
 
 ## Tech Stack
 
