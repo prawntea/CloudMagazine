@@ -1,0 +1,56 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# production
+dist
+build
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# vite cache
+.vite
+vite.config.ts.timestamp-*
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# editor directories/files
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.vscode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# tailwind
+tailwind.config.js.timestamp-*
+
+# testing
+coverage
+
+# misc
+*.pem
+
+# debug
+debug.log*
+
+# package managers
+yarn.lock
+package-lock.json
+pnpm-lock.yaml

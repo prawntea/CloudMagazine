@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, MapPin, Star, Thermometer, Wind, Droplets, ArrowRight, Sun, Cloud, CloudRain, CloudSnow, CloudLightning, Moon, Terminal, Cpu, Radio, Navigation } from 'lucide-react';
 
-// --- API Helpers ---
+// API Helpers
 
 const getWeatherDescription = (code, isDay = 1) => {
   // Adjusted colors to be visible in both Day (Light) and Night (Dark) modes
@@ -97,7 +97,7 @@ export default function App() {
     }
   };
 
-  // --- THEME ENGINE ---
+  // THEME ENGINE
   // Determine if it is Day (1) or Night (0). Default to Night (0) if loading.
   const isDayTheme = weather?.current?.is_day === 1;
 
@@ -180,7 +180,7 @@ export default function App() {
 
       {/* Logo and Tagline - Top Left */}
       <div className={`absolute top-8 left-8 flex flex-col items-center gap-2 z-20`}>
-        <img src="/logo.svg" alt="Cloud Magazine" className={`h-32 w-auto transition-all duration-1000 ${!isDayTheme ? 'brightness-0 invert saturate-150' : ''}`} />
+        <img src="/logo.svg" alt="Cloud Magazine - A Megazone Cloud Weather App" className={`h-32 w-auto transition-all duration-1000 ${!isDayTheme ? 'brightness-0 invert saturate-150' : ''}`} />
       </div>
 
       <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
