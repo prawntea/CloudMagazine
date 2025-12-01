@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 450" width="1600" height="450">
+  <defs>
+    <style>
+      .cloud-outline { fill: none; stroke: #000; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+      .magazine-text { font-family: monospace; font-weight: 900; font-size: 110px; fill: #000; }
+      .magazine-cloud { letter-spacing: 63.5px; }
+      .magazine-mag { letter-spacing: 8px; }
+      .tagline-text { font-family: monospace; font-size: 55px; fill: #000; letter-spacing: 2px; }
+    </style>
+  </defs>
+  
+  <!-- Cloud symbol (110px height, center aligned with text center) -->
+  <g transform="translate(20, 40) scale(1.72)">
+    <path class="cloud-outline" d="M 20 95 C 10 95 5 90 5 82 C 5 75 10 70 16 68 C 17 58 25 50 35 50 C 42 50 48 54 51 60 C 56 57 62 55 68 55 C 85 55 98 67 98 82 C 98 83 98 84 98 85 C 105 85 111 91 111 99 C 111 107 105 114 98 114 L 20 114 Z"/>
+  </g>
+  
+  <!-- Text -->
+  <text class="magazine-text magazine-cloud" x="250" y="155">CLOUD</text>
+  <text class="magazine-text magazine-mag" x="250" y="250">MAGAZINE</text>
+  <text class="tagline-text" x="165" y="320" text-anchor="start">YOUR DAILY SKY BRIEF</text>
+</svg>
