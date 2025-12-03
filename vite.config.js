@@ -6,5 +6,6 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
+    allowedHosts: ['.localhost', 'unitedly-intercorporate-cohen.ngrok-free.dev', '.ngrok.io'],
   },
 })

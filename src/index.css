@@ -4,12 +4,23 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Courier New', monospace;
+  overflow-x: hidden;
+}
+
+/* Improve touch targets on mobile */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -27,4 +38,12 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   opacity: 0.8;
+}
+
+/* Prevent text selection on UI elements */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
