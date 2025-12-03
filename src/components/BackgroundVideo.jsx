@@ -1,46 +1,101 @@
-/**
- * BackgroundVideo Component
- * Displays animated background video that switches between day/night themes
- */
 import { useRef, useEffect } from 'react';
 
 export const BackgroundVideo = ({ isDayTheme }) => {
   const videoRef = useRef(null);
-  // Select video source based on day/night theme
+  const hasPlayedRef = useRef(false); // Track if video has started playing
+
   const videoSrc = isDayTheme
     ? "https://www.megazone.com/images/main/video/ai_native.mp4"
     : "https://www.megazone.com/images/main/video/cloud_native.mp4";
 
-  // Ensure video plays when source changes or on load
+  // Function to attempt playing the video
+  const playVideo = () => {
+    if (videoRef.current && videoRef.current.paused) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play()
+        .then(() => {
+          console.log('Video playing successfully');
+          hasPlayedRef.current = true;
+        })
+        .catch(error => {
+          console.log('Video autoplay prevented:', error);
+        });
+    }
+  };
+
+  // Try to play video when source changes
   useEffect(() => {
     if (videoRef.current) {
       const video = videoRef.current;
 
-      // Reset and play video function
-      const playVideo = () => {
+      const attemptPlay = () => {
         video.currentTime = 0;
         const playPromise = video.play();
+        
         if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.log('Video autoplay prevented:', error);
-          });
+          playPromise
+            .then(() => {
+              console.log('Video autoplayed on load');
+              hasPlayedRef.current = true;
+            })
+            .catch(error => {
+              console.log('Autoplay prevented, waiting for user interaction:', error);
+            });
         }
       };
 
-      // Play immediately if already loaded, otherwise wait for load events
+      // Try playing when video is ready
       if (video.readyState >= 2) {
-        playVideo();
+        attemptPlay();
       } else {
-        video.addEventListener('loadeddata', playVideo, { once: true });
-        video.addEventListener('canplay', playVideo, { once: true });
+        video.addEventListener('loadeddata', attemptPlay, { once: true });
+        video.addEventListener('canplay', attemptPlay, { once: true });
       }
 
       return () => {
-        video.removeEventListener('loadeddata', playVideo);
-        video.removeEventListener('canplay', playVideo);
+        video.removeEventListener('loadeddata', attemptPlay);
+        video.removeEventListener('canplay', attemptPlay);
       };
     }
   }, [videoSrc]);
+
+  // Add global interaction listeners to play video on first user interaction
+  useEffect(() => {
+    // Only add listeners if video hasn't played yet
+    if (hasPlayedRef.current) return;
+
+    const handleInteraction = () => {
+      if (!hasPlayedRef.current) {
+        playVideo();
+      }
+    };
+
+    // Listen to multiple interaction events
+    const events = [
+      'click', 
+      'touchstart', 
+      'touchend',
+      'mousedown',
+      'mousemove', 
+      'keydown',
+      'scroll'
+    ];
+
+    // Add listeners to document for ANY interaction
+    events.forEach(event => {
+      document.addEventListener(event, handleInteraction, { 
+        once: true,  // Remove after first trigger
+        passive: true  // Better performance
+      });
+    });
+
+    // Cleanup
+    return () => {
+      events.forEach(event => {
+        document.removeEventListener(event, handleInteraction);
+      });
+    };
+  }, []);
 
   return (
     <video
