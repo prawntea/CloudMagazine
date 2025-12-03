@@ -1,7 +1,12 @@
+/**
+ * Global Styles
+ * Tailwind CSS directives and custom utility classes
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent font scaling on mobile devices */
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -10,6 +15,7 @@ html {
   text-size-adjust: 100%;
 }
 
+/* Base body styles with monospace font */
 body {
   margin: 0;
   padding: 0;
@@ -17,12 +23,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Improve touch targets on mobile */
+/* Improve touch targets on mobile devices */
 button, a {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
 
+/* Custom scrollbar styling */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }

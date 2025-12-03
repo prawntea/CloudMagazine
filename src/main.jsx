@@ -1,3 +1,7 @@
+/**
+ * Application Entry Point
+ * Initializes React and mounts the App component to the DOM
+ */
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
