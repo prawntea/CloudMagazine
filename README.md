@@ -1,18 +1,19 @@
 # CloudMagazine - Weather App
 
-A modern, futuristic weather application built with React, Vite, and Tailwind CSS. Takes design elements from Megazone Cloud including the logo, title and day (Megazone AIR animation) and night (Cloud Native animation) backgrounds. Features real-time weather data, temperature unit toggling, favorites management, and a sleek day/night theme.
+A modern, futuristic-themed weather application built with React, Vite, and Tailwind CSS. Takes design elements from Megazone Cloud including the logo, title and day (Megazone AIR animation) and night (Cloud Native animation) backgrounds. Features real-time weather data, temperature unit toggling, favorites management, and a sleek day/night theme.
 
 ## Tech Stack
 
-- **React 18** - UI library
+- **React 18** - Frontend library
 - **Vite 5** - Fast build tool
 - **Tailwind CSS 3** - Utility-first CSS framework
 - **Lucide React** - Icon library
 - **Open-Meteo API** - Free weather data (no API key required)
+- **Vercel** - fast deployment that integrates seamlessly with Git and Vite
 
 ## Features
 
-- 🌍 Search weather by city name
+- 🌍 Search weather by city name (Select among the top 5 search results to disambiguate between locations)
 - ⭐ Save favorite locations
 - 🌡️ Toggle between Celsius and Fahrenheit
 - 🌙 Automatic day/night theme switching
@@ -28,25 +29,31 @@ A modern, futuristic weather application built with React, Vite, and Tailwind CS
 
 ### Installation
 
-1. Navigate to the project directory:
-   ```bash
-   cd /Users/prionti/PycharmProjects/WeatherApp
-   ```
+Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/prawnteya/CloudMagazine.git
+cd CloudMagazine
+```
 
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
 
-### Running Locally
+```bash
+npm install
+```
 
-Start the development server:
+3. Start development server:
 
 ```bash
 npm run dev
 ```
 
-The app will automatically open in your browser at `http://localhost:5173/`
+4. Open your browser:
+```
+   http://localhost:5173
+```
 
 ### Building for Production
 
@@ -64,17 +71,45 @@ npm run preview
 
 ## Project Structure
 
+
+## 📁 Project Structure
 ```
-WeatherApp/
+CloudMagazine/
 ├── src/
-│   ├── App.jsx           # Main React component (weather app)
-│   ├── main.jsx          # Entry point
-│   └── index.css         # Global styles
-├── index.html            # HTML template
-├── package.json          # Dependencies and scripts
-├── vite.config.js        # Vite configuration
-├── tailwind.config.js    # Tailwind CSS configuration
-└── postcss.config.js     # PostCSS configuration
+│   ├── components/           # React components
+│   │   ├── BackgroundVideo.jsx    # Video background with theme support
+│   │   ├── LoadingScreen.jsx      # Loading state UI
+│   │   ├── SearchPanel.jsx        # Location search + favorites
+│   │   ├── WeatherDisplay.jsx     # Main weather card
+│   │   └── TomorrowForecast.jsx   # Next day preview
+│   │
+│   ├── hooks/                # Custom React hooks
+│   │   ├── useLocalTime.js        # Local time calculation & day phase
+│   │   └── useWeatherData.js      # Weather API integration
+│   │
+│   ├── utils/                # Pure utility functions
+│   │   ├── weatherHelpers.js      # Weather code mappings
+│   │   └── temperatureUtils.js    # Temperature conversions
+│   │
+│   ├── constants/            # Configuration & static data
+│   │   ├── weatherCodes.js        # WMO weather code definitions
+│   │   └── styles.js              # Theme style configurations
+│   │
+│   ├── App.jsx              # Main application component
+│   ├── main.jsx             # React entry point
+│   └── index.css            # Global styles & Tailwind imports
+│
+├── public/                  # Static assets
+├── index.html               # HTML template
+├── package.json             # Dependencies & scripts
+├── package-lock.json        # Locked dependency versions
+├── vite.config.js          # Vite configuration
+├── tailwind.config.js      # Tailwind customization
+├── postcss.config.js       # PostCSS configuration
+├── vercel.json             # Vercel deployment config
+├── .gitignore              # Git ignore rules
+├── README.md               # This file
+└── DESIGN.md               # Design considerations
 ```
 
 ## API
