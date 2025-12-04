@@ -1,21 +1,25 @@
 ## Design Inspiration
 
-The entire visual identity and user experience were intentionally crafted to align with Megazone Cloud's brand aesthetic:
+The entire visual identity and user experience were intentionally crafted to align with Megazone Cloud's brand aesthetic.
 
-Day theme: Clean slate grays with blue accents
-Night theme: Deep blacks with cyan/pink neon accents (cyberpunk aesthetic)
+**Day theme**: Clean slate grays with blue accents
 
-Note: day/night is determined by the Open-Meteo API's corresponding endpoint.
+**Night theme**: Deep blacks with cyan/pink neon accents (cyberpunk aesthetic)
+
+**Note**: Day/night is determined by the Open-Meteo API's corresponding endpoint.
 
 ### Animated Backgrounds: Integrated actual video assets from Megazone Cloud's landing page
 
-Day theme: the video on Megazone's website for their AI native section
-Night theme: the video on Megazone's website used in the Cloud Native section
-Credit: Videos sourced from megazone.com
+**Day theme**: the video on Megazone's website for their AI native section
+
+**Night theme**: the video on Megazone's website used in the Cloud Native section
+
+**Credit**: Videos sourced from megazone.com
 
 ### Logo Design: Created a custom logo inspired by Megazone's 
 
 Geometric shapes suggesting both clouds and technology
+
 Adaptive styling (inverted colors for night theme)
 
 ## Architecture
