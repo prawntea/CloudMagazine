@@ -1,50 +1,47 @@
 import { useRef, useEffect } from 'react';
 
 export const BackgroundVideo = ({ isDayTheme }) => {
-  const videoRef = useRef(null);
-  const hasPlayedRef = useRef(false); // Track if video has started playing
+  const dayVideoRef = useRef(null);
+  const nightVideoRef = useRef(null);
+  const hasPlayedRef = useRef({ day: false, night: false });
 
-  const videoSrc = isDayTheme
-    ? "https://www.megazone.com/images/main/video/ai_native.mp4"
-    : "https://www.megazone.com/images/main/video/cloud_native.mp4";
+  const dayVideoSrc = "https://www.megazone.com/images/main/video/ai_native.mp4";
+  const nightVideoSrc = "https://www.megazone.com/images/main/video/cloud_native.mp4";
 
-  // Function to attempt playing the video
-  const playVideo = () => {
+  // Function to attempt playing a specific video
+  const playVideo = (videoRef, videoType) => {
     if (videoRef.current && videoRef.current.paused) {
       videoRef.current.currentTime = 0;
       videoRef.current.play()
         .then(() => {
-          console.log('Video playing successfully');
-          hasPlayedRef.current = true;
+          console.log(`${videoType} video playing successfully`);
+          hasPlayedRef.current[videoType] = true;
         })
         .catch(error => {
-          console.log('Video autoplay prevented:', error);
+          console.log(`${videoType} video autoplay prevented:`, error);
         });
     }
   };
 
-  // Try to play video when source changes
+  // Try to play day video when it loads
   useEffect(() => {
-    if (videoRef.current) {
-      const video = videoRef.current;
-
+    if (dayVideoRef.current) {
+      const video = dayVideoRef.current;
       const attemptPlay = () => {
         video.currentTime = 0;
         const playPromise = video.play();
-        
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log('Video autoplayed on load');
-              hasPlayedRef.current = true;
+              console.log('Day video autoplayed on load');
+              hasPlayedRef.current.day = true;
             })
             .catch(error => {
-              console.log('Autoplay prevented, waiting for user interaction:', error);
+              console.log('Day video autoplay prevented:', error);
             });
         }
       };
 
-      // Try playing when video is ready
       if (video.readyState >= 2) {
         attemptPlay();
       } else {
@@ -57,16 +54,49 @@ export const BackgroundVideo = ({ isDayTheme }) => {
         video.removeEventListener('canplay', attemptPlay);
       };
     }
-  }, [videoSrc]);
+  }, []);
 
-  // Add global interaction listeners to play video on first user interaction
+  // Try to play night video when it loads
   useEffect(() => {
-    // Only add listeners if video hasn't played yet
-    if (hasPlayedRef.current) return;
+    if (nightVideoRef.current) {
+      const video = nightVideoRef.current;
+      const attemptPlay = () => {
+        video.currentTime = 0;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('Night video autoplayed on load');
+              hasPlayedRef.current.night = true;
+            })
+            .catch(error => {
+              console.log('Night video autoplay prevented:', error);
+            });
+        }
+      };
 
+      if (video.readyState >= 2) {
+        attemptPlay();
+      } else {
+        video.addEventListener('loadeddata', attemptPlay, { once: true });
+        video.addEventListener('canplay', attemptPlay, { once: true });
+      }
+
+      return () => {
+        video.removeEventListener('loadeddata', attemptPlay);
+        video.removeEventListener('canplay', attemptPlay);
+      };
+    }
+  }, []);
+
+  // Add global interaction listeners to play videos on first user interaction
+  useEffect(() => {
     const handleInteraction = () => {
-      if (!hasPlayedRef.current) {
-        playVideo();
+      if (!hasPlayedRef.current.day) {
+        playVideo(dayVideoRef, 'day');
+      }
+      if (!hasPlayedRef.current.night) {
+        playVideo(nightVideoRef, 'night');
       }
     };
 
@@ -84,8 +114,8 @@ export const BackgroundVideo = ({ isDayTheme }) => {
     // Add listeners to document for ANY interaction
     events.forEach(event => {
       document.addEventListener(event, handleInteraction, { 
-        once: true,  // Remove after first trigger
-        passive: true  // Better performance
+        once: true,
+        passive: true
       });
     });
 
@@ -98,17 +128,45 @@ export const BackgroundVideo = ({ isDayTheme }) => {
   }, []);
 
   return (
-    <video
-      key={videoSrc}
-      ref={videoRef}
-      className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-1000 z-0"
-      src={videoSrc}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      aria-hidden="true"
-    />
+    <>
+      {/* Day theme video (ai_native) */}
+      <video
+        ref={dayVideoRef}
+        className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-1000 ease-in-out ${
+          isDayTheme ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+        }`}
+        src={dayVideoSrc}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      />
+
+      {/* Night theme video (cloud_native) */}
+      <video
+        ref={nightVideoRef}
+        className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-1000 ease-in-out ${
+          !isDayTheme ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+        }`}
+        src={nightVideoSrc}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      />
+
+      {/* Overlay gradient for better readability */}
+      <div 
+        className={`absolute inset-0 z-[1] transition-opacity duration-1000 ease-in-out pointer-events-none ${
+          isDayTheme 
+            ? 'bg-gradient-to-b from-blue-500/10 via-transparent to-orange-500/10' 
+            : 'bg-gradient-to-b from-slate-900/30 via-transparent to-cyan-900/20'
+        }`}
+      />
+    </>
   );
 };
