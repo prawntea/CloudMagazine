@@ -1,3 +1,8 @@
+/*
+  * BackgroundVideo Component 
+ * Shows a light, airy background animation from Megazone for day 
+ * and a cloud-themed video for night, transitioning smoothly between them as needed.
+*/
 import { useRef, useEffect } from 'react';
 
 export const BackgroundVideo = ({ isDayTheme }) => {
