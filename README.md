@@ -1,4 +1,4 @@
-# CloudMagazine - Weather App
+# CloudMagazine - Weather App (live [here](https://cloud-magazine.vercel.app)!)
 
 A modern, futuristic-themed weather application built with React, Vite, and Tailwind CSS. Takes design elements from Megazone Cloud including the logo, title and day (Megazone AIR animation) and night (Cloud Native animation) backgrounds. Features real-time weather data, temperature unit toggling, favorites management, and a sleek day/night theme.
 
