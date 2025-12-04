@@ -2,6 +2,10 @@
 
 A modern, futuristic-themed weather application built with React, Vite, and Tailwind CSS. Takes design elements from Megazone Cloud including the logo, title and day (Megazone AIR animation) and night (Cloud Native animation) backgrounds. Features real-time weather data, temperature unit toggling, favorites management, and a sleek day/night theme.
 
+![alt text](public/day.png)
+
+![alt text](public/night.png)
+
 ## Tech Stack
 
 - **React 18** - Frontend library

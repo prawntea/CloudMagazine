@@ -5,6 +5,8 @@ The entire visual identity and user experience were intentionally crafted to ali
 Day theme: Clean slate grays with blue accents
 Night theme: Deep blacks with cyan/pink neon accents (cyberpunk aesthetic)
 
+Note: day/night is determined by the Open-Meteo API's corresponding endpoint.
+
 ### Animated Backgrounds: Integrated actual video assets from Megazone Cloud's landing page
 
 Day theme: the video on Megazone's website for their AI native section
@@ -35,7 +37,7 @@ If I wanted to make a weather app for more sophisticated forecasting or past-inf
 
 ## Deployment
 
-Currently, the app is deployed on Vercel due to its fast setup, seamless Git-based deployment, and cost-effectiveness. For a production-ready or commercial release, Vercel remains a strong choice because the weather app is predominantly front-end focused, with minimal backend, storage, or authentication requirements. Its serverless functions and global CDN provide low-latency API calls, which is well-suited for fetching weather data efficiently.
+Currently, the app is deployed on Vercel on [cloud-magazine.vercel.app](https://cloud-magazine.vercel.app) due to its fast setup, seamless Git-based deployment, and cost-effectiveness. For a production-ready or commercial release, Vercel remains a strong choice because the weather app is predominantly front-end focused, with minimal backend, storage, or authentication requirements. Its serverless functions and global CDN provide low-latency API calls, which is well-suited for fetching weather data efficiently.
 
 If the app were to evolve to require a more sophisticated backend, including persistent storage, user authentication, or complex APIs, I would consider migrating to something with more robust support like AWS Amplify. It would also enable me to have more granular control over technical infrastructure.
 
